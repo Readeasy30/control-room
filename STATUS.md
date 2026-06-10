@@ -1,6 +1,6 @@
 # STATUS — Live Session Log
 
-_Last updated: 2026-06-10 by Claude. Update this at the end of every session._
+_Last updated: 2026-06-10 (files committed) by Claude. Update this at the end of every session._
 
 ## Verified state as of 2026-06-10
 
@@ -13,9 +13,11 @@ Most "pending" video files were already committed last session — they just lan
 - The stray broken-name file `make shorts py` (no extension) — NOT present (already clean) ✓
 - No duplicate/mislabeled Python script found ✓
 
-**Genuinely still missing (2 items):**
-1. `PUBLISHING-SCHEDULE.md` (education version — Mon/Wed/Fri, 3x/week across YouTube Shorts, TikTok, Instagram Reels, Facebook Reels). Only a RESTURANTS-AI publishing schedule exists.
-2. `outreach-tracker.xlsx` (multi-sheet: 14-col tracker w/ dropdowns, Daily Send Log 5/day cap, Opt-Out Registry, auto-counting Summary, hidden Lists). Only a CSV exists in CAMPAIGNS/.
+**DONE 2026-06-10 (committed directly via PAT):**
+1. `video-system/PUBLISHING-SCHEDULE.md` — education version, Mon/Wed/Fri, 4 channels. ✓
+2. `outreach-tracker.xlsx` (root) — multi-sheet: Summary, Tracker (14 cols + dropdowns), Daily Send Log (5/day cap), Opt-Out Registry, hidden Lists. 199 formulas, zero errors. ✓
+
+**Nothing else genuinely missing in webmasters.** 
 
 **Cleanup decision needed:** two parallel video folders (`VIDEO-SYSTEM` vs `video-system`) plus some root duplicates. Pick ONE canonical folder and consolidate.
 
@@ -36,7 +38,7 @@ Most "pending" video files were already committed last session — they just lan
 - **Not deployed.** Needs dashboard "Edit Code" or `wrangler deploy`. Secrets CLAUDE_API_KEY and GOOGLE_JSON must be set before /analyze works.
 
 ## Suggested next actions
-1. Regenerate + commit PUBLISHING-SCHEDULE.md and outreach-tracker.xlsx to webmasters.
-2. Decide canonical video folder, consolidate, delete the duplicate.
-3. Fix README paths (Wholelychit/ -> Readeasy30/).
-4. Build day-01..30 lesson pages for both education sites.
+1. Decide canonical video folder (`video-system` lowercase currently holds everything) and consolidate; delete the near-empty `VIDEO-SYSTEM` and root duplicates.
+2. Fix README paths (Wholelychit/ -> Readeasy30/).
+3. Build day-01..30 lesson pages for both education sites.
+4. SPX: supply OAuth creds (TT_SECRET, TT_REFRESH); deploy claude-seo-agent Worker + set its secrets.
