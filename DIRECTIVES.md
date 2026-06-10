@@ -2,6 +2,19 @@
 
 _Read this first at the start of any session. These are settled facts. Do not re-litigate them._
 
+## Session startup routine (do this first, every time)
+1. **(If this repo is private) Gerry pastes a fresh fine-grained PAT.** The previous session's token never carries over. Reading a private repo and committing both require a token.
+   - If this repo is public, Claude can just fetch DIRECTIVES.md + STATUS.md from the links to get oriented, but still needs a token to commit changes.
+   - Simplest failsafe with no token at all: Gerry pastes the file contents straight into chat.
+2. **Read DIRECTIVES.md + STATUS.md** (this repo) to re-orient. STATUS.md is the live snapshot of where every project stands.
+3. **Gerry names the task; Claude works and commits** directly via the API using the token.
+
+> Token setup reminder (fine-grained PAT): Resource owner = Readeasy30, Repository access = All repositories, Repository permissions -> Contents = Read and write. Add Administration = Read and write only if Claude needs to create new repos.
+> Create at: https://github.com/settings/personal-access-tokens/new (tap, don't type). Delete it when done: https://github.com/settings/personal-access-tokens
+
+## End-of-session routine
+- Update STATUS.md with what changed and what's next, so the next session starts accurate.
+
 ## Account (SETTLED — stop questioning this)
 - **All repos live under one GitHub account: `Readeasy30`** (display name "Webmaster").
 - **`Wholelychit` is a brand name only — NOT a separate account.** It does not exist as a login. Never attempt to sign into it. Any old README path reading `Wholelychit/...` is wrong and should read `Readeasy30/...`.
