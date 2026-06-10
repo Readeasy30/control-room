@@ -24,9 +24,11 @@ Most "pending" video files were already committed last session — they just lan
 > NOTE: content for the 2 missing files was generated in past sessions but is gone from Claude's disk (resets each session). Both must be regenerated from spec before committing.
 
 ### spx-tastytrade-autotrader (private)
-- 4 files committed and done: spx_position_monitor.py, .gitignore, .env.example, requirements.txt.
-- Built against tastytrade SDK v12.4.1 (OAuth via provider_secret/refresh_token).
-- **Blocked on Gerry:** supply OAuth creds TT_SECRET and TT_REFRESH from tastytrade developer settings. Read-only monitor; places no orders.
+- **FIXED 2026-06-10:** the committed monitor was actually still on the OLD auth and a non-existent API surface (username/password Session, `a_get_*` methods, wrong field names, plus junk `python` text on line 1) - which is why it never connected.
+- Rewrote `spx_position_monitor.py` against the REAL tastytrade 12.4.1 API: OAuth `Session(provider_secret, refresh_token, is_test)`, async `Account.get` / `get_balances` / `get_positions`, correct CurrentPosition/AccountBalance fields, proper unrealized-P/L math. Compiles clean; calls verified against installed SDK. Read-only; places no orders.
+- Updated `.env.example` to OAuth (TT_SECRET / TT_REFRESH).
+- Removed stray `.env` (it was a mislabeled copy of the script, NOT real creds - no leak, no rotation needed).
+- **Blocked on Gerry:** create `.env` locally from `.env.example` with real TT_SECRET + TT_REFRESH from tastytrade OAuth settings, then run `python spx_position_monitor.py`.
 
 ### Websites
 - readeasy30.com — audited clean (46 pages, no broken links).
@@ -41,4 +43,4 @@ Most "pending" video files were already committed last session — they just lan
 1. Decide canonical video folder (`video-system` lowercase currently holds everything) and consolidate; delete the near-empty `VIDEO-SYSTEM` and root duplicates.
 2. Fix README paths (Wholelychit/ -> Readeasy30/).
 3. Build day-01..30 lesson pages for both education sites.
-4. SPX: supply OAuth creds (TT_SECRET, TT_REFRESH); deploy claude-seo-agent Worker + set its secrets.
+4. SPX is code-complete; just needs Gerry's real OAuth creds in a local .env to run. Then: deploy claude-seo-agent Worker + set its secrets.
