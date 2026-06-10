@@ -29,6 +29,7 @@ Most "pending" video files were already committed last session — they just lan
 - Updated `.env.example` to OAuth (TT_SECRET / TT_REFRESH).
 - Removed stray `.env` (it was a mislabeled copy of the script, NOT real creds - no leak, no rotation needed).
 - **Blocked on Gerry:** create `.env` locally from `.env.example` with real TT_SECRET + TT_REFRESH from tastytrade OAuth settings, then run `python spx_position_monitor.py`.
+- Step-by-step setup walkthrough saved at `docs/OAUTH-SETUP.md` in the SPX repo (read scope only; tool never trades).
 
 ### Websites
 - readeasy30.com — audited clean (46 pages, no broken links).
