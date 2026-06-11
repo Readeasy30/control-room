@@ -1,6 +1,13 @@
 # STATUS — Live Session Log
 
-_Last updated: 2026-06-10 (files committed) by Claude. Update this at the end of every session._
+_Last updated: 2026-06-11 by Claude. Update this at the end of every session._
+
+## Verified 2026-06-11 — restaurant project consolidated (webmasters)
+
+- **Spelling fixed** (commit `fb2ba71`): renamed 8 `RESTURANTS-AI-*` files -> `RESTAURANTS-AI-*`, merged the misspelled `ResturantsAI/` folder into `RestaurantAI/`, and corrected `resturant`->`restaurant` text repo-wide. Verified zero `restur` strings remain.
+- **Domain repointed** (commit `d13356f`): all 91 `Restaurant(s).ai` brand-domain references across 39 files changed to the real live domain `restaurantaibot.com` (canonical — confirmed against the actual website repo `Readeasy30/restaurantaibot.com`, which is public). Zero `.ai` domain refs remain.
+- Both pushed to `main`; webmasters remote HEAD now `d13356f`. Committed directly via fine-grained PAT (token regenerated immediately after use).
+
 
 ## Verified state as of 2026-06-10
 
