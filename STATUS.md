@@ -1,6 +1,35 @@
 # STATUS — Live Session Log
 
-_Last updated: 2026-06-11 by Claude. Update this at the end of every session._
+_Last updated: 2026-06-12 by Claude. Update this at the end of every session._
+
+## Verified 2026-06-12 — 240-day lesson data wired into BOTH live app engines
+
+**Correction to earlier notes:** the prior "day-01..30 lesson pages are linked but DO NOT EXIST — build them" item was a misframing. Neither site uses per-day HTML pages. Both are a single dropdown-driven `app.html`. There were no pages to build. The real gap was that each site's `app.js` engine ignored the staged 240-day data and ran off its own small embedded set. Verified against the live repos, not the note.
+
+### MathEasy30 (matheasy30.com)
+- Confirmed all 9 staging tags already present in `app.html` (level-a..h + lesson-loader-240.js) and all 8 level files total **240 days, no gaps** (A:1-30 … H:211-240).
+- Confirmed committed `app.js` (v20260604, 379 lines) referenced the staged globals **zero** times — it ran off its own embedded 30-day `lessonPlan`. That was the whole bug.
+- **Fix:** `app.js` now builds `lessonPlan` from `window.MATHEASY_NEXT_PATH_LESSONS` (staged 240), normalized to the engine's existing shape; embedded 30-day array kept as fallback. Engine logic otherwise untouched.
+- `app.html`: bumped `app.js` cache-buster `20260604-stable1` → `20260612-staged1` (1-line change) so returning users refetch.
+- Simulated load: dropdown lists days 1-240; days 1 / 120 / 240 all render correct questions. ✓
+
+### ReadEasy30 (readeasy30.com)
+- Staged data complete: 8 level files = **240 unique reading lessons, no gaps** (schema: day, level, title, focus, story, vocab[{word,meaning}], questions[{prompt,answer}], bubbles).
+- **Two gaps found:** (1) `app.html` did NOT load the level files or loader at all — only student-profiles.js + app.js. (2) `app.js` (437 lines) ignored the staged globals and generated days from only **3 repeating story templates per level** (so learners saw the same passage every 3rd day — effectively ~24 unique stories across 240 days).
+- **Fix 1 — `app.html`:** added the 8 `level-*-lessons.js` tags + `lesson-loader-240.js` before `app.js`; bumped app.js cache-buster → `20260612-staged1`.
+- **Fix 2 — `app.js`:** now builds `lessons` from `window.READEASY_NEXT_PATH_LESSONS` (240 unique), mapped to the exact shape `makeLesson()` returned (vocab pills now show word — meaning); template generator kept as fallback. Render/check code untouched.
+- Simulated load: **240 unique stories** (was ~24); days 1 / 120 / 240 render correct story/vocab/questions/answers. ✓
+
+### Commit state
+Files prepared this session, pending commit by Gerry (4 files):
+- `matheasy30.com/app.js`, `matheasy30.com/app.html`
+- `readeasy30.com/app.js`, `readeasy30.com/app.html`
+Each `app.html` change is minimal (verified by diff). Both engines fall back gracefully if staged data ever fails to load.
+
+### Still open (unchanged from 2026-06-10/11)
+- `spx-tastytrade-autotrader`: code-complete; needs local `.env` (TT_SECRET, TT_REFRESH) + a local run to confirm the live connection.
+- `claude-seo-agent` Worker: built, not deployed; needs `CLAUDE_API_KEY` + `GOOGLE_JSON` secrets set, then deploy.
+- README path fixes (`Wholelychit/` → `Readeasy30/`) where not yet done.
 
 ## Verified 2026-06-11 — restaurant project consolidated (webmasters)
 
