@@ -1,51 +1,183 @@
-# DIRECTIVES — Standing Instructions
+Paste this into DIRECTIVES.md. Use Ctrl+A to clear the old text first.
 
-_Read this first at the start of any session. These are settled facts. Do not re-litigate them._
+DIRECTIVES — Standing Instructions
 
-## Verify-first rule (the most important one)
+Read this first at the start of every session. These are settled facts. Do not re-litigate them.
 
-The repo is the source of truth. STATUS.md and memory are only hints, and they go stale. Before claiming anything is pending, missing, or done — or starting any work — check the actual repo state, don't trust the note. Most "we already did this" days come from acting on a stale summary instead of the live repo. Run /sync (or list the real file tree) FIRST, reconcile against STATUS.md, then work.
+1. Verify-First Rule
 
-## Session startup routine (do this first, every time)
+The repo is the source of truth.
 
-1. Orient: read DIRECTIVES.md + STATUS.md (this repo).
-2. VERIFY before doing: run /sync in Claude Code (or list the real file tree of each active repo via the GitHub MCP) and reconcile against STATUS.md. Trust the repo, not the note. Report any drift before touching anything.
-3. Gerry names the task; Claude works and commits.
+STATUS.md, memory, notes, and past summaries are only hints. They can go stale.
 
-## End-of-session routine
+Before claiming anything is pending, missing, done, broken, or ready — check the actual repo state first.
 
-- Update STATUS.md from verified reality: what changed, what's confirmed present, what's actually next. Date each item (e.g. "verified present 2026-06-10").
+Always verify by doing one of these:
 
-## The write path that WORKS
+Run /sync in Claude Code
+Or list the real file tree through GitHub MCP
+Or inspect the live repo directly
 
-- Primary: GitHub MCP connected inside Claude Code. Token stored once in config, not re-pasted each session.
-- Also works: fine-grained PAT + direct commits via the GitHub API.
-- Token scope: Resource owner = Readeasy30, Repository access = All repositories, Contents = Read and write.
-- Security: prefer the MCP over pasting a PAT into chat. If a token lands in chat, regenerate it.
+Then reconcile the repo against STATUS.md.
 
-## The write path that does NOT work (skip it)
+Trust the repo, not the note.
 
-- Do not use the GitHub Desktop sign-in routine. It fails trying to reconcile a "Wholelychit" account that doesn't exist. Skip entirely.
+Most wasted days happen because stale summaries are treated as fact.
 
-## Account (SETTLED — stop questioning this)
+2. Session Startup Routine
 
-- All repos live under one GitHub account: Readeasy30 (display name "Webmaster").
-- Wholelychit is a brand name AND the Windows username — NOT a GitHub account. Never try to sign into it. Old README paths reading Wholelychit/... should read Readeasy30/...
-- 15 repos under Readeasy30. No third account is ever to be created.
+Do this first every time:
 
-## Navigation rules for Gerry
+Read DIRECTIVES.md.
+Read STATUS.md.
+Run /sync in Claude Code, or list the real repo file tree through GitHub MCP.
+Compare verified repo state against STATUS.md.
+Report any drift before changing files.
+Gerry names the task.
+Claude works, edits, and commits.
 
-- Gerry consistently lands in GitHub's global search bar when asked to type a URL. Never give typed-URL instructions. Give tappable links or click-based menu steps.
-- Communicate in short, direct steps. Act autonomously; minimize back-and-forth.
+Do not start work from memory alone.
 
-## Repo reference
+3. End-of-Session Routine
 
-- webmasters (public) — marketing system (formerly marketing-system).
-- spx-tastytrade-autotrader (private) — SPX trading study tool.
-- readeasy30.com, matheasy30.com — the two education websites.
-- control-room (this repo) — standing instructions + live status.
+Before ending a session:
 
-## File-commit preferences (legacy fallback)
+Update STATUS.md from verified reality.
+Record what changed.
+Record what is confirmed present.
+Record what is actually next.
+Date each status item.
 
-- Markdown: web editor copy-paste. Binaries: drag-and-drop. MCP/PAT direct-commit is now primary.
-Paste that into the DIRECTIVES.md editor (Ctrl+A to clear f
+Use clear date notes, such as:
+
+verified present 2026-06-10
+
+4. GitHub Account Facts
+
+All repos live under one GitHub account:
+
+Readeasy30
+
+Display name:
+
+Webmaster
+
+Wholelychit is a brand name and the Windows username.
+
+Wholelychit is not a GitHub account.
+
+Never try to sign in as Wholelychit.
+
+Old README paths that say:
+
+Wholelychit/...
+
+should be treated as old references and corrected to:
+
+Readeasy30/...
+
+There are 15 repos under Readeasy30.
+
+Do not create a third GitHub account.
+
+5. Working Write Path
+
+Primary write path:
+
+GitHub MCP connected inside Claude Code
+
+The token should be stored once in config.
+
+Do not re-paste the token every session.
+
+Backup write path:
+
+Fine-grained PAT + direct commits through GitHub API
+
+Token settings:
+
+Resource owner: Readeasy30
+Repository access: All repositories
+Contents: Read and write
+
+Security rule:
+
+Prefer MCP over pasting a PAT into chat.
+
+If a token is ever pasted into chat, regenerate it.
+
+6. Write Path to Skip
+
+Do not use the GitHub Desktop sign-in routine.
+
+It fails because it tries to reconcile a Wholelychit account that does not exist.
+
+Skip GitHub Desktop sign-in entirely.
+
+7. Gerry Navigation Rules
+
+Gerry often lands in GitHub’s global search bar when asked to type a URL.
+
+Do not give typed-URL instructions.
+
+Use one of these instead:
+
+Tappable links
+Click-by-click menu steps
+Exact button names
+Exact file names
+
+Keep instructions short and direct.
+
+Act autonomously.
+
+Minimize back-and-forth.
+
+8. Active Repo Reference
+
+Primary repos:
+
+control-room — standing instructions and live status
+webmasters — marketing system, formerly marketing-system
+spx-tastytrade-autotrader — private SPX trading study tool
+readeasy30.com — reading website
+matheasy30.com — math website
+9. File Commit Preferences
+
+Primary method:
+
+Use MCP or PAT direct commit.
+
+Legacy fallback:
+
+Markdown files: GitHub web editor copy-paste
+Binary files: drag-and-drop upload
+
+When giving manual GitHub instructions, say exactly:
+
+Which repo to open
+Which file to open
+What to paste
+What commit message to use
+What to verify after commit
+10. Communication Rules
+
+Use short, direct steps.
+
+Do not ask many small questions.
+
+Make the best reasonable assumption and continue.
+
+Batch work.
+
+Avoid repeating work.
+
+Do not redesign unless Gerry asks.
+
+Do not re-open settled account, repo, or workflow questions.
+
+11. Core Rule
+
+Before touching files:
+
+Verify the repo first. Then work.
