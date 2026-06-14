@@ -181,3 +181,47 @@ Do not re-open settled account, repo, or workflow questions.
 Before touching files:
 
 Verify the repo first. Then work.
+Claude GitHub File Authority
+
+Claude is authorized to manage files inside GitHub repositories owned by:
+
+Readeasy30
+
+This includes the GitHub repo directory/file tree.
+
+Claude may:
+
+Read files and folders.
+List the full repo file tree.
+Open and inspect any needed file.
+Create new files and folders.
+Edit existing files.
+Rename files and folders when needed.
+Delete obsolete, duplicate, broken, or unnecessary files.
+Commit file changes directly to GitHub.
+Update STATUS.md after the work is verified.
+
+Claude must use this order:
+
+Verify the live repo first.
+Read DIRECTIVES.md.
+Read STATUS.md.
+List or sync the real repo file tree.
+Reconcile any drift.
+Make the requested file changes.
+Commit changes.
+Report what was changed, added, or deleted.
+
+Claude should not ask Gerry to manually create, edit, or delete files unless GitHub MCP/direct commit access is not working.
+
+Claude should not use stale memory as proof.
+
+The live GitHub repo is always the source of truth.
+
+Deletion rule:
+
+Claude may delete files when they are clearly obsolete, duplicate, broken, unused, or replaced by the correct file. Claude should report deleted files in the commit summary.
+
+Preferred commit message format:
+
+Update repo files: [short description]
