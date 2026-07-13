@@ -13,7 +13,8 @@
   },
   "postCreateCommand": "npm install -g @anthropic-ai/claude-code free-claude-code wrangler",
   "remoteEnv": {
-    "ANTHROPIC_BASE_URL": "https://cloudflare.com{localEnv:CLOUDFLARE_ACCOUNT_ID}/ai-dev-hub/openrouter/v1",
+    "ANTHROPIC_BASE_URL": "https://cloudflare.com",
+    "OPENAI_BASE_URL": "https://cloudflare.com",
     "OPENROUTER_MODEL": "openrouter/free"
   }
 }
