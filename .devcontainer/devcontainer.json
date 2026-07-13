@@ -1,0 +1,19 @@
+{
+  "name": "Control-Room-AI-Workspace",
+  "image": "://microsoft.com",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "cloudflare.wrangler-vscode"
+      ]
+    }
+  },
+  "postCreateCommand": "npm install -g @anthropic-ai/claude-code free-claude-code wrangler",
+  "remoteEnv": {
+    "ANTHROPIC_BASE_URL": "https://cloudflare.com{localEnv:CLOUDFLARE_ACCOUNT_ID}/ai-dev-hub/openrouter/v1",
+    "OPENROUTER_MODEL": "openrouter/free"
+  }
+}
