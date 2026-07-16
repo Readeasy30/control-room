@@ -264,5 +264,14 @@ Verify the repo first.
 Then work.
 
 The live GitHub repo is always the source of truth.
+Read Readeasy30/control-room/DIRECTIVES.md first.
 
+Work on Readeasy30/topshelfwebsites.
+Follow the existing architecture:
+- static HTML/CSS/JS
+- Cloudflare Pages
+- no React/Vite
+
+Audit the repo and continue building the production website.
+Commit completed changes.
 
