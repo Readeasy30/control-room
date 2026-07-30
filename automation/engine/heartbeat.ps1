@@ -1,0 +1,1 @@
+﻿$timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"`n`$status = @{ engine="control-room"; status="running"; timestamp=`$timestamp } | ConvertTo-Json`n`$status | Out-File automation\engine\status.json -Encoding utf8`nWrite-Host "CONTROL ROOM HEARTBEAT"`nWrite-Host `$status
