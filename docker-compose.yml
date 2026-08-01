@@ -1,18 +1,37 @@
-version: '3.8'
+﻿version: '3.8'
 services:
-  gateway:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: omniroute-core-wholelychit
+  omniroute:
+    image: diegosouzapw/omniroute:latest
+    container_name: omniroute_gateway
+    restart: always
     ports:
       - "20128:20128"
     environment:
       - NODE_ENV=production
-      - PORT=20128
-      - APP_LOG_LEVEL=info
+    volumes:
+      - omniroute_data:/app/data
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    container_name: n8n_automation
     restart: always
-    deploy:
-      resources:
-        limits:
-          memory: 4096M
+    ports:
+      - "5678:5678"
+    environment:
+      - GENERIC_TIMEZONE=America/New_York
+      - TZ=America/New_York
+      - WEBHOOK_URL=https://yourdomain.com
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+    volumes:
+      - ./n8n_data:/home/node/.n8n
+    depends_on:
+      - omniroute
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflare_tunnel
+    restart: always
+    command: tunnel run --token YOUR_CLOUDFLARE_TUNNEL_TOKEN
+    depends_on:
+      - n8n
+      - omniroute
+volumes:
+  omniroute_data:

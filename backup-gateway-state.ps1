@@ -1,6 +1,8 @@
-cd "C:\Users\Carol\OmniRoute"
-$TimeStamp = Get-Date -Format "yyyyMMdd_HHmmss"
-if (Test-Path ".\config\models_cache.json") {
-    Copy-Item -Path ".\config\models_cache.json" -Destination ".\config\models_cache_$TimeStamp.bak" -Force
-    Write-Host "[BACKUP] Local configuration snapshot preserved safely." -ForegroundColor Green
+﻿$ErrorActionPreference = "Stop"
+$SourceFile = ".\config\models_cache.json"
+$TimeStamp  = Get-Date -Format "yyyyMMdd_HHmmss"
+$DestFile   = ".\config\snapshots\models_cache_$TimeStamp.bak"
+if (Test-Path $SourceFile) {
+    Copy-Item -Path $SourceFile -Destination $DestFile -Force
+    .\notify-status.ps1 -Message "SYSTEM: Backup snapshot generated successfully on Readeasy30."
 }
