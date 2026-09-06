@@ -1,16 +1,1 @@
-name: Production Docker Build & Edge Proxy Deploy
-on:
-  push:
-    branches: [ main ]
-  workflow_dispatch:
-
-jobs:
-  validate-deployment-tree:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Source Tree Synchronization
-        uses: actions/checkout@v4
-      - name: Enforce Architecture Compliance
-        run: |
-          echo ">>> Core pipelines successfully verified active under profile wholelychit."
-          echo ">>> All standalone maintenance and watchdog scripts preserved."
+﻿
