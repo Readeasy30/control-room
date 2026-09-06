@@ -8,8 +8,13 @@ services:
       - "20128:20128"
     environment:
       - NODE_ENV=production
+      - GITHUB_PERSONAL_ACCESS_TOKEN=${GITHUB_TOKEN}
+      - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN}
     volumes:
       - omniroute_data:/app/data
+      - .:/workspace # Grants your models complete read/write terminal access to the repository files
+      - /var/run/docker.sock:/var/run/docker.sock # Allows container orchestration tasks
+
   n8n:
     image: docker.n8n.io/n8nio/n8n:latest
     container_name: n8n_automation
@@ -19,19 +24,22 @@ services:
     environment:
       - GENERIC_TIMEZONE=America/New_York
       - TZ=America/New_York
-      - WEBHOOK_URL=https://yourdomain.com
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
     volumes:
       - ./n8n_data:/home/node/.n8n
     depends_on:
       - omniroute
+
   cloudflared:
     image: cloudflare/cloudflared:latest
     container_name: cloudflare_tunnel
     restart: always
-    command: tunnel run --token YOUR_CLOUDFLARE_TUNNEL_TOKEN
+    environment:
+      - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
+    command: tunnel run
     depends_on:
       - n8n
       - omniroute
+
 volumes:
   omniroute_data:
