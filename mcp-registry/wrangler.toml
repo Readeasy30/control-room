@@ -1,0 +1,7 @@
+name = "mcp-registry"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+[[kv_namespaces]]
+binding = "MCP_REGISTRY"
+id = "90a3120bd0754de7a9fd87e99230537f"

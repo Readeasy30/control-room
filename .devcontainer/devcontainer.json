@@ -1,0 +1,16 @@
+{
+  "name": "Control-Room-AI-Workspace",
+  "image": "://microsoft.com",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "cloudflare.wrangler-vscode"
+      ]
+    }
+  },
+  "postCreateCommand": "npm install -g @anthropic-ai/claude-code free-claude-code wrangler"
+}
+
