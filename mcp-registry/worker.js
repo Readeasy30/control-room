@@ -1,4 +1,4 @@
-﻿// Cloudflare Serverless AI Core Routing Engine
+// Cloudflare Serverless AI Core Routing Engine
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
@@ -37,12 +37,13 @@ export default {
           headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
         });
       } else {
-        return await callModelEndpoint(payload, 'https://moonshot.cn', env.KIMI_API_KEY);
+        // Updated Direct Route Path to eliminate Moonshot gateway timeouts
+        return await callModelEndpoint(payload, 'https://moonshot.ai', env.KIMI_API_KEY);
       }
     } catch (edgeError) {
-      // Dynamic Automated Fallback Track
+      // Dynamic Automated Fallback Track pointing to alternative global path
       console.error("Primary node connection dropped. Routing automatic fallback to Kimi Engine...");
-      return await callModelEndpoint(payload, 'https://moonshot.cn', env.KIMI_API_KEY);
+      return await callModelEndpoint(payload, 'https://moonshot.ai', env.KIMI_API_KEY);
     }
   }
 };
@@ -51,12 +52,12 @@ async function callModelEndpoint(payload, endpoint, token) {
   const response = await fetch(endpoint, {
     method: "POST",
     headers: {
-      "Authorization": Bearer \,
+      "Authorization": `Bearer ${token}`,
       "Content-Type": "application/json"
     },
     body: JSON.stringify(payload)
   });
-  
+
   const responseData = await response.json();
   return new Response(JSON.stringify(responseData), {
     status: response.status,
