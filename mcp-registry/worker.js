@@ -38,12 +38,12 @@ export default {
         });
       } else {
         // Corrected full global path endpoint for Moonshot/Kimi API core
-        return await callModelEndpoint(payload, 'https://moonshot.ai', env.KIMI_API_KEY);
+        return await callModelEndpoint(payload, 'https://api.moonshot.ai/v1/chat/completions', env.KIMI_API_KEY);
       }
     } catch (edgeError) {
       // Corrected fallback path engine endpoint
       console.error("Primary node connection dropped. Routing automatic fallback to Kimi Engine...");
-      return await callModelEndpoint(payload, 'https://moonshot.ai', env.KIMI_API_KEY);
+      return await callModelEndpoint(payload, 'https://api.moonshot.ai/v1/chat/completions', env.KIMI_API_KEY);
     }
   }
 };
